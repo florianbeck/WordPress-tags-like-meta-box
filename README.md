@@ -5,11 +5,20 @@ This helper class will allow you to customize a tags-like meta box of your own w
 
 
 ##Use
+
 Include the class file anywhere (in your plugin or theme), and then instantiate the class.
 
-    $myVersionOfTags = new Tags_Like_Meta_box( array( 'ID' => 'post-notes', 'nice_name' => 'Notes' );
+```php
+$myVersionOfTags = new Tags_Like_Meta_box( 
+    array( 
+        'ID' => 'post-notes', 
+        'nice_name' => 'Notes',
+        'screen' => 'page',
+		'howto' => 'Separate data with commas'
+    );
+```
 
-By default the meta box is added over all post types, and saves any data into a piece of post meta for the post. 
-
-If you want to edit the capabilities, just create a subclass and edit away!
-
+`ID` specifies the name custom field name for your data.  
+`nice_name` is the name which is displayed to the user.  
+`screen`, `context` and `priority` can be used with the parameters described in the [add_meta_box()](https://developer.wordpress.org/reference/functions/add_meta_box/)-reference.  
+`howto` adds an custom explanation.
