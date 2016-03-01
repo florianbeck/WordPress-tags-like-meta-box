@@ -18,6 +18,7 @@ class Tags_Like_Meta_Box {
 		$this->labels->screen = $args['screen'] ? $args['screen'] : NULL;
 		$this->labels->context = $args['context'] ? $args['context'] : 'side';
 		$this->labels->priority = $args['priority'] ? $args['priority'] : 'default';
+		$this->labels->howto = $args['howto'];
 		
 		wp_enqueue_script('jquery');
 		add_action('add_meta_boxes', array( $this, 'add_meta_box') );
@@ -28,7 +29,7 @@ class Tags_Like_Meta_Box {
 	}
 
 	function add_style() {
-		?><style>
+		/*?><style>
 		.<?php echo $this->labels->checklist; ?> span {
 		margin-right: 25px;
 		display: block;
@@ -37,7 +38,7 @@ class Tags_Like_Meta_Box {
 		white-space: nowrap;
 		cursor: default;
 		}</style>
-		<?php
+		<?php*/
 	}
 	function add_meta_box() {
 		add_meta_box(
@@ -84,7 +85,8 @@ class Tags_Like_Meta_Box {
 			</div>
 			<?php endif; ?>
 			</div>
-			<div class="<?php echo $this->labels->checklist; ?>"></div>
+			<?php if ($this->labels->howto) : ?><p class="howto"><?php echo $this->labels->howto; ?></p><?php endif; ?>
+			<div class="tagchecklist <?php echo $this->labels->checklist; ?>"></div>
 		</div>
 		<?php
 	}
