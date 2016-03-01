@@ -3,9 +3,10 @@
 class Tags_Like_Meta_Box {
 
 	function __construct( $args ) {
-		if ( $args['ID'])
+		if (!$args['ID'])
 			return;
 		$this->ID = $args['ID'];
+		$this->labels = new stdClass();
 		$this->labels->nice_name = $args['nice_name'] ? $args['nice_name']  : $args['ID'];
 		$this->labels->checklist = $this->ID . "-checklist";
 		$this->labels->div = $this->ID . "-div";
@@ -14,6 +15,9 @@ class Tags_Like_Meta_Box {
 		$this->labels->JSObjectName = str_replace('-', '_', $this->ID );
 		$this->labels->new = $this->ID . "-new";
 		$this->labels->add_button = $this->ID . "-add_button";
+		$this->labels->screen = $args['screen'] ? $args['screen'] : NULL;
+		$this->labels->context = $args['context'] ? $args['context'] : 'side';
+		$this->labels->priority = $args['priority'] ? $args['priority'] : 'default';
 		
 		wp_enqueue_script('jquery');
 		add_action('add_meta_boxes', array( $this, 'add_meta_box') );
@@ -36,8 +40,14 @@ class Tags_Like_Meta_Box {
 		<?php
 	}
 	function add_meta_box() {
-		
-		add_meta_box($this->ID, $this->labels->nice_name, array( $this, 'meta_box' ), null, 'side', 'core');	
+		add_meta_box(
+			$this->ID, //id
+			$this->labels->nice_name, //title
+			array( $this, 'meta_box' ), //callback
+			$this->labels->screen, //screen
+			$this->labels->context, //context
+			$this->labels->priority //priority
+		);	
 	}
 
 	function ajax_get_tags() {
