@@ -19,6 +19,7 @@ class Tags_Like_Meta_Box {
 		$this->labels->context = $args['context'] ? $args['context'] : 'side';
 		$this->labels->priority = $args['priority'] ? $args['priority'] : 'default';
 		$this->labels->howto = $args['howto'];
+		$this->labels->nojstext = $args['nojstext'];
 		
 		wp_enqueue_script('jquery');
 		add_action('add_meta_boxes', array( $this, 'add_meta_box') );
@@ -75,7 +76,7 @@ class Tags_Like_Meta_Box {
 		<div class="<?php echo $this->labels->div; ?>" id="<?php echo $this->ID; ?>">
 			<div class="jaxtag">
 			<div class="nojs-tags hide-if-js">
-			<p>Text</p>
+			<p><?php echo $this->labels->nojstext; ?></p>
 			<textarea name="<?php echo $this->labels->textarea; ?>" rows="3" cols="20" class="<?php echo $this->labels->textarea; ?>" id="<?php echo $this->labels->textarea; ?>" <?php echo $disabled; ?>><?php echo $this->get_stored_data( $post->ID ); // textarea_escaped by esc_attr() ?></textarea></div>
 		 	<?php if ( 1 == 1 ) : ?>
 			<div class="<?php echo $this->labels->ajaxtag; ?> hide-if-no-js">
@@ -93,8 +94,8 @@ class Tags_Like_Meta_Box {
 	function save_post($post_id) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
       		return;
-		if ( ! $_REQUEST[ $this->labels->textarea ] )
-			return; 
+		/*if ( ! $_REQUEST[ $this->labels->textarea ] )
+			return; */
 
 		$data = esc_attr($_REQUEST[$this->labels->textarea]);
 		update_post_meta($post_id, $this->ID, $data);

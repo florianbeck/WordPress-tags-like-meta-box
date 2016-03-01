@@ -21,4 +21,5 @@ $myVersionOfTags = new Tags_Like_Meta_box(
 `ID` specifies the name custom field name for your data.  
 `nice_name` is the name which is displayed to the user.  
 `screen`, `context` and `priority` can be used with the parameters described in the [add_meta_box()](https://developer.wordpress.org/reference/functions/add_meta_box/)-reference.  
-`howto` adds an custom explanation.
+`howto` adds an explanation.
+`nojstext` adds an explanation if there's no javascript.
