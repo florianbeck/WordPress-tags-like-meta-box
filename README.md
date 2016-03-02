@@ -15,7 +15,8 @@ $myVersionOfTags = new Tags_Like_Meta_box(
         'nice_name' => 'Notes',
         'screen' => 'page',
 		'howto' => 'Separate data with commas'
-    );
+    )
+);
 ```
 
 `ID` specifies the name custom field name for your data.  
