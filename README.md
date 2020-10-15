@@ -3,6 +3,7 @@
 The WordPress tags meta box has a great interface for dealing with data. 
 This helper class will allow you to customize a tags-like meta box of your own with ease.
 
+[![Not Maintained](https://img.shields.io/badge/Maintenance%20Level-Not%20Maintained-yellow.svg)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
 
 ##Use
 
